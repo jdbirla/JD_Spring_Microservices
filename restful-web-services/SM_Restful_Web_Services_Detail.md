@@ -25,3 +25,7 @@
 - Retrieve details of a post     - GET /users/{id}/posts/{post_id}
 
 ---
+## What You Will Learn during this Step 03:
+- Creating a Hello World Service
+
+
