@@ -28,4 +28,8 @@
 ## What You Will Learn during this Step 03:
 - Creating a Hello World Service
 
+---
+## What You Will Learn during this Step 04:
+- Enhancing the Hello World Service to return a Bean
 
+---
