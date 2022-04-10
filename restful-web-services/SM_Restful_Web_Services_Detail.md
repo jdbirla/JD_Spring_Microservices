@@ -33,3 +33,10 @@
 - Enhancing the Hello World Service to return a Bean
 
 ---
+## What You Will Learn during this Step 05:
+- Quick Review of Spring Boot Auto Configuration and Dispatcher Servlet - What's happening in the background?
+
+![Browser](Images/Screenshot_01.png)
+
+---
+
