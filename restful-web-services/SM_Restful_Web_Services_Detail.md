@@ -65,5 +65,10 @@
 - Step 13 - Exercise : User Post Resource and Exception Handling
 
 ---
+## What You Will Learn during this Step 14:
+- Step 14 - Implementing DELETE Method to delete a User Resource
+
+---
+
 
 
