@@ -39,4 +39,9 @@
 ![Browser](Images/Screenshot_01.png)
 
 ---
+## What You Will Learn during this Step 06:
+
+- Enhancing the Hello World Service with a Path Variable
+
+---
 
