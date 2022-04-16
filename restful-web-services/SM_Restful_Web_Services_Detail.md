@@ -58,4 +58,12 @@
 ![Browser](Images/Screenshot_06.png)
 
 ---
+## What You Will Learn during this Step 11 & 12 & 13:
+
+- Step 11 - Implementing Exception Handling - 404 Resource Not Found
+- Step 12 - Implementing Generic Exception Handling for all Resources
+- Step 13 - Exercise : User Post Resource and Exception Handling
+
+---
+
 
