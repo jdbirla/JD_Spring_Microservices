@@ -44,4 +44,18 @@
 - Enhancing the Hello World Service with a Path Variable
 
 ---
+## What You Will Learn during this Step 07 & 08 & 09 & 10:
+
+- Step 07 - Creating User Bean and User Service
+- Step 08 - Implementing GET Methods for User Resource
+- Step 09 - Implementing POST Method to create User Resource
+- Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location URI
+
+![Browser](Images/Screenshot_02.png)
+![Browser](Images/Screenshot_03.png)
+![Browser](Images/Screenshot_04.png)
+![Browser](Images/Screenshot_05.png)
+![Browser](Images/Screenshot_06.png)
+
+---
 
