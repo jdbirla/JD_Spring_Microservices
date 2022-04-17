@@ -156,3 +156,24 @@ good.morning.message = Goede Morgen
 ![Browser](Images/Screenshot_10.png)
 
 ---
+## What You Will Learn during this Step 19:
+
+- Step 19 - Content Negotiation - Implementing Support for XML
+
+* pom.xml add dependency jackson-dataformat-xml
+
+```pom.xml
+<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+```
+* output
+
+![Browser](Images/Screenshot_11.png)
+
+---
+
+
+
+
