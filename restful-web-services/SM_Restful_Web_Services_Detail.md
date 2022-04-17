@@ -636,9 +636,29 @@ public class PersonVersioninController {
 ![Browser](Images/Produce_version_2.png)
 
 ---
+## What You Will Learn during this Step 28:
 
+- Implementing Basic Authentication with Spring Security
 
+* pom.xml add dependency
+```pom.xml
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+```
 
+* Application.properties
+```properties
+spring.security.user.name=jd
+spring.security.user.password=pass
+```
+
+* Output
+![Browser](Images/Screenshot_29.png)
+![Browser](Images/Screenshot_30.png)
+
+---
 
 
 
