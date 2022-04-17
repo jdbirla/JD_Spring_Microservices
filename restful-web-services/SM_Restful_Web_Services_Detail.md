@@ -243,6 +243,96 @@ management.endpoints.web.exposure.include=*
 ![Browser](Images/Screenshot_23.png)
 
 ---
+## What You Will Learn during this Step 24:
+
+- Implementing Static Filtering for RESTful Service we can filter a perticular field to expose
+- Two to filter a field
+- First way: using @JsonIgnore on the field {private String field3;}
+- Second Way : @JsonIgnoreProperties(value = {"field1","field2"}) on the Bean
+
+* com.jd.rest.webservices.restfulwebservices.filtering.SomeBean
+```java 
+package com.jd.rest.webservices.restfulwebservices.filtering;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = {"field1","field2"})
+public class SomeBean {
+	
+	private String field1;
+	private String field2;
+	
+	//@JsonIgnore
+	private String field3;
+	
+	
+	public SomeBean(String field1, String field2, String field3) {
+		super();
+		this.field1 = field1;
+		this.field2 = field2;
+		this.field3 = field3;
+	}
+	public String getField1() {
+		return field1;
+	}
+	public void setField1(String field1) {
+		this.field1 = field1;
+	}
+	public String getField2() {
+		return field2;
+	}
+	public void setField2(String field2) {
+		this.field2 = field2;
+	}
+	public String getField3() {
+		return field3;
+	}
+	public void setField3(String field3) {
+		this.field3 = field3;
+	}
+
+}
+
+```
+* com.jd.rest.webservices.restfulwebservices.filtering.FilteringController
+```java
+package com.jd.rest.webservices.restfulwebservices.filtering;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class FilteringController {
+
+	
+	@GetMapping("/filtering")
+	public SomeBean retrieveSomeBean()
+	{
+		return new SomeBean("value1","value2","value3");
+	}
+	
+	@GetMapping("/filtering-list")
+	public List<SomeBean> retrieveListOfSomeBeans()
+	{
+		return Arrays.asList(new SomeBean("value1","value2","value3"),new SomeBean("value12","value22","value32"));
+	}
+}
+
+```
+* Output In below image can see field1 and field2 not display
+
+![Browser](Images/Screenshot_23.png)
+
+---
+
+
+
+
+
 
 
 
