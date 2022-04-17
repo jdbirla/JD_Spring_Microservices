@@ -119,7 +119,40 @@
 ![Browser](Images/Screenshot_08.png)
 
 ---
+## What You Will Learn during this Step 17 and 18:
 
+- Step 17 - Overview of Advanced RESTful Service Features
+- Step 18 - Internationalization for RESTful Services
 
+* com.jd.rest.webservices.restfulwebservices.HelloWorldController
+```java
+@GetMapping(path = "/hello-world-internationalized")
+	public String helloWorldInternationalized(
+		//	@RequestHeader(name = "Accept-Language" ,required = false) Locale locale
+			) {
+		//return "Hello World";
+		return messageSource.getMessage("good.morning.message", null, LocaleContextHolder.getLocale());
+		
+	}
+```
+* messages.properties
+```properties
+good.morning.message = Good Morning
+```
 
+* messages_fr.properties
+```properties
+good.morning.message = Bonjour
+```
 
+* messages_nl.properties
+```properties
+good.morning.message = Goede Morgen
+```
+
+* output
+![Browser](Images/Screenshot_09.png)
+
+![Browser](Images/Screenshot_10.png)
+
+---
