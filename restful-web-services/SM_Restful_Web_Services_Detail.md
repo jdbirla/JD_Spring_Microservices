@@ -434,9 +434,131 @@ public class FilteringController {
 ![Browser](Images/Screenshot_26.png)
 
 ---
+## What You Will Learn during this Step 26:
 
+- Versioning RESTful Services - Basic Approach with URIs
 
+* com.jd.rest.webservices.restfulwebservices.versioning.PersonV1
+```java
+package com.jd.rest.webservices.restfulwebservices.versioning;
 
+public class PersonV1 {
+	private String name;
+	
+	
+
+	public PersonV1() {
+		super();
+	}
+
+	public PersonV1(String name) {
+		super();
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+}
+
+```
+
+* com.jd.rest.webservices.restfulwebservices.versioning.PersonV2
+```java
+package com.jd.rest.webservices.restfulwebservices.versioning;
+
+public class PersonV2 {
+	private Name name;
+
+	public PersonV2() {
+		super();
+	}
+
+	public PersonV2(Name name) {
+		super();
+		this.name = name;
+	}
+
+	public Name getName() {
+		return name;
+	}
+
+	public void setName(Name name) {
+		this.name = name;
+	}
+
+}
+
+```
+
+* com.jd.rest.webservices.restfulwebservices.versioning.Name
+```java
+package com.jd.rest.webservices.restfulwebservices.versioning;
+
+public class Name {
+	
+	private String firstName;
+	private String lastName;
+	
+	public Name() {
+		
+	}
+	
+	public Name(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+}
+
+```
+
+* com.jd.rest.webservices.restfulwebservices.versioning.PersonVersioninController
+```java
+package com.jd.rest.webservices.restfulwebservices.versioning;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PersonVersioninController {
+	
+	@GetMapping("v1/person")
+	public PersonV1 personV1(){
+		return new PersonV1("Bob Charlie");
+	}
+	
+	@GetMapping("v2/person")
+	public PersonV2 personV2(){
+		return new PersonV2(new Name("Bob" ,"Charlie"));
+	}
+
+}
+
+```
+* Output
+
+![Browser](Images/Screenshot_27.png)
+![Browser](Images/Screenshot_28.png)
+
+---
 
 
 
