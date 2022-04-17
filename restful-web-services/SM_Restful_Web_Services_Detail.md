@@ -85,5 +85,41 @@
 ![Browser](Images/Screenshot_07.png)
 
 ---
+## What You Will Learn during this Step 16:
+
+- Step 16 - Implementing HATEOAS for RESTful Services
+
+* pom.xml add dependency 
+
+```pom.xml
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+```
+* com.jd.rest.webservices.restfulwebservices.user.UserResource 
+```java	
+	@GetMapping("/users/{id}")
+	public EntityModel<User> retrieveUser(@PathVariable int id) {
+		User user = service.findOne(id);
+
+		if (user == null)
+			throw new UserNotFoundException("id-" + id);
+
+		EntityModel<User> model = EntityModel.of(user);
+
+		WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		model.add(linkToUsers.withRel("all-users"));
+
+		return model;
+	}
+```
+
+* output
+![Browser](Images/Screenshot_08.png)
+
+---
+
+
 
 
