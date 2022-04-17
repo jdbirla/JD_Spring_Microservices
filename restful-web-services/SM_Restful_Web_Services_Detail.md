@@ -559,8 +559,83 @@ public class PersonVersioninController {
 ![Browser](Images/Screenshot_28.png)
 
 ---
+## What You Will Learn during this Step 27:
 
+- Versioning RESTful Services - Header and Content Negotiation Approaches
 
+![Browser](Images/Versioning_fatcs.png)
+
+* com.jd.rest.webservices.restfulwebservices.versioning.PersonVersioninController
+```java
+package com.jd.rest.webservices.restfulwebservices.versioning;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PersonVersioninController {
+	
+	@GetMapping("v1/person")
+	public PersonV1 personV1(){
+		return new PersonV1("Bob Charlie");
+	}
+	
+	@GetMapping("v2/person")
+	public PersonV2 personV2(){
+		return new PersonV2(new Name("Bob" ,"Charlie"));
+	}
+
+	@GetMapping(value="/person/param" ,  params = "version=1")
+	public PersonV1 paramV1(){
+		return new PersonV1("Bob Charlie");
+	}
+	
+	@GetMapping(value="/person/param" ,  params = "version=2")
+	public PersonV2 paramV2(){
+		return new PersonV2(new Name("Bob" ,"Charlie"));
+	}
+
+	
+	@GetMapping(value="/person/header" ,  headers = "X-API-VERSION=1")
+	public PersonV1 headerV1(){
+		return new PersonV1("Bob Charlie");
+	}
+	
+	@GetMapping(value="/person/header" ,  headers = "X-API-VERSION=2")
+	public PersonV2 headerV2(){
+		return new PersonV2(new Name("Bob" ,"Charlie"));
+	}
+	
+	@GetMapping(value="/person/produces" ,  produces  = "application/vnd.company.app-v1+json")
+	public PersonV1 producesV1(){
+		return new PersonV1("Bob Charlie");
+	}
+	
+	@GetMapping(value="/person/produces" ,  produces  = "application/vnd.company.app-v2+json")
+	public PersonV2 producesV2(){
+		return new PersonV2(new Name("Bob" ,"Charlie"));
+	}
+	
+}
+
+```
+* Output
+- Parameter Versioning
+
+![Browser](Images/Pramamater_version_1.png)
+![Browser](Images/Pramamater_version_2.png)
+
+- Header Versioning
+
+![Browser](Images/Header_version_1.png)
+![Browser](Images/Header_version_2.png)
+
+- Produces Versioning
+
+![Browser](Images/Produce_version_1.png)
+![Browser](Images/Produce_version_2.png)
+
+---
 
 
 
