@@ -173,6 +173,43 @@ good.morning.message = Goede Morgen
 ![Browser](Images/Screenshot_11.png)
 
 ---
+## What You Will Learn during this Step 20:
+
+- Step 20 - Configuring Auto Generation of Swagger Documentation
+- https://springdoc.org/   Open api documentation page
+- http://localhost:8080/swagger-ui/index.html  API documentation swagger page
+- http://localhost:8080/v3/api-docs Open API rest service
+
+* pom.xml add dependency 
+```pom.xml
+	<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.7</version>
+		</dependency>
+```
+* Swagger http://localhost:8080/swagger-ui/index.html
+
+![Browser](Images/Screenshot_12.png)
+![Browser](Images/Screenshot_13.png)
+![Browser](Images/Screenshot_14.png)
+![Browser](Images/Screenshot_15.png)
+![Browser](Images/Screenshot_16.png)
+
+
+* Open API rest service http://localhost:8080/v3/api-docs 
+
+![Browser](Images/Screenshot_17.png)
+
+---
+
+
+
+
+
+
+
+
 
 
 
