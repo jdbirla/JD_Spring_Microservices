@@ -202,7 +202,7 @@ good.morning.message = Goede Morgen
 ![Browser](Images/Screenshot_17.png)
 
 ---
-## What You Will Learn during this Step 23:
+## What You Will Learn during this Step 22:
 
 - Monitoring APIs with Spring Boot Actuator
 
@@ -223,6 +223,28 @@ management.endpoints.web.exposure.include=*
 ![Browser](Images/Screenshot_18.png)
 
 ---
+## What You Will Learn during this Step 23:
+
+- Visualizing APIs with HAL Explorer
+
+* pom.xml add dependency 
+```xml
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-rest-hal-explorer</artifactId>
+	</dependency>
+```
+* Output http://localhost:8080/explorer/index.html#uri=/
+
+![Browser](Images/Screenshot_19.png)
+![Browser](Images/Screenshot_20.png)
+![Browser](Images/Screenshot_21.png)
+![Browser](Images/Screenshot_22.png)
+![Browser](Images/Screenshot_23.png)
+
+---
+
+
 
 
 
