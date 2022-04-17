@@ -173,7 +173,7 @@ good.morning.message = Goede Morgen
 ![Browser](Images/Screenshot_11.png)
 
 ---
-## What You Will Learn during this Step 20:
+## What You Will Learn during this Step 20 and 21 and 22:
 
 - Step 20 - Configuring Auto Generation of Swagger Documentation
 - https://springdoc.org/   Open api documentation page
@@ -202,6 +202,31 @@ good.morning.message = Goede Morgen
 ![Browser](Images/Screenshot_17.png)
 
 ---
+## What You Will Learn during this Step 23:
+
+- Monitoring APIs with Spring Boot Actuator
+
+* pom.xml add dependency 
+```xml
+	<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+```
+
+* application.properties
+```properties
+management.endpoints.web.exposure.include=*
+```
+* Output http://localhost:8080/actuator
+
+![Browser](Images/Screenshot_18.png)
+
+---
+
+
+
+
 
 
 
