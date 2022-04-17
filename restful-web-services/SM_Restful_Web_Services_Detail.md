@@ -69,6 +69,19 @@
 - Step 14 - Implementing DELETE Method to delete a User Resource
 
 ---
+## What You Will Learn during this Step 15:
+- Step 15 - Implementing Validations for RESTful Services
 
+* pom.xml ad dependency of spring-boot-starter-validation
+```pom.xml
+</dependency>
+			<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+```
+
+
+---
 
 
