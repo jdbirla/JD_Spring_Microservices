@@ -325,7 +325,7 @@ public class FilteringController {
 ```
 * Output In below image can see field1 and field2 not display
 
-![Browser](Images/Screenshot_23.png)
+![Browser](Images/Screenshot_24.png)
 
 ---
 
