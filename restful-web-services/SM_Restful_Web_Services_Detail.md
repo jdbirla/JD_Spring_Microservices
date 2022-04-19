@@ -1020,6 +1020,28 @@ insert into post values(11002, 'My Second Post', 10001);
 ![Browser](Images/Screenshot_38.png)
 
 ---
+## What You Will Learn during this Step 34:
+
+- Implementing a GET service to retrieve all Posts of a User
+
+* com.jd.rest.webservices.restfulwebservices.user.UserJPAResource
+```java
+@GetMapping("/jpa/users/{id}/posts")
+	public List<Post> retrieveAllPostsByUser(@PathVariable int id) {
+		Optional<User> user = userRepository.findById(id);
+
+		if (!user.isPresent())
+			throw new UserNotFoundException("id-" + id);
+		
+		return user.get().getPosts();
+		
+	}
+```
+* output
+
+![Browser](Images/Screenshot_39.png)
+
+---
 
 
 
