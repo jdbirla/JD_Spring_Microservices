@@ -1042,7 +1042,38 @@ insert into post values(11002, 'My Second Post', 10001);
 ![Browser](Images/Screenshot_39.png)
 
 ---
+## What You Will Learn during this Step 35:
 
+- Implementing a POST service to create a Post for a User
+
+* com.jd.rest.webservices.restfulwebservices.user.UserJPAResource
+```java
+	@PostMapping("/jpa/users/{id}/posts")
+	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+		Optional<User> userOptional = userRepository.findById(id);
+
+		if (!userOptional.isPresent())
+			throw new UserNotFoundException("id-" + id);
+		
+	    User user = userOptional.get();
+	    
+	    post.setUser(user);
+	    
+	    postRepository.save(post);
+	    
+	    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+	    
+
+	}
+```
+* output
+
+![Browser](Images/Screenshot_40.png)
+![Browser](Images/Screenshot_41.png)
+
+---
 
 
 
