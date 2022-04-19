@@ -1074,6 +1074,16 @@ insert into post values(11002, 'My Second Post', 10001);
 ![Browser](Images/Screenshot_41.png)
 
 ---
+## What You Will Learn during this Step 36:
+
+- Richardson Maturity Model
+
+![Browser](Images/Screenshot_42.png)
+![Browser](Images/Screenshot_43.png)
+![Browser](Images/Screenshot_44.png)
+
+---
+
 
 
 
