@@ -659,6 +659,102 @@ spring.security.user.password=pass
 ![Browser](Images/Screenshot_30.png)
 
 ---
+## What You Will Learn during this Step 29 and 30:
+
+- Overview of Connecting RESTful Service to JPA
+- Creating User Entity and some test data
+
+* Application.properties add below configuration
+
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.show-sql=true
+spring.h2.console.enabled=true
+```
+
+* src/main/resources data.sql 
+```sql
+insert into user values(10001, sysdate(), 'AB');
+insert into user values(10002, sysdate(), 'Jill');
+insert into user values(10003, sysdate(), 'Jam');
+```
+
+* com.jd.rest.webservices.restfulwebservices.user.User 
+```java
+
+package com.jd.rest.webservices.restfulwebservices.user;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@Size(min = 2, message="Name should have atleast 2 characters")
+	private String name;
+
+	@Past
+	private Date birthDate;
+	
+	protected User() {
+		
+	}
+
+	public User(Integer id, String name, Date birthDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.birthDate = birthDate;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("User [id=%s, name=%s, birthDate=%s]", id, name, birthDate);
+	}
+
+}
+```
+* Output http://localhost:8080/h2-console/
+
+![Browser](Images/Screenshot_31.png)
+
+---
+
+
 
 
 
