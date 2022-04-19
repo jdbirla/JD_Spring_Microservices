@@ -942,8 +942,84 @@ public class UserJPAResource {
 ![Browser](Images/Screenshot_37.png)
 
 ---
+## What You Will Learn during this Step 33:
 
+- Creating Post Entity and Many to One Relationship with User Entity
 
+* com.jd.rest.webservices.restfulwebservices.user.Post
+```java
+
+package com.jd.rest.webservices.restfulwebservices.user;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class Post {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private String description;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnore
+	private User user;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Post [id=%s, description=%s]", id, description);
+	}
+}
+```
+* com.jd.rest.webservices.restfulwebservices.user.User
+```java
+@OneToMany(mappedBy = "user")
+	private List<Post> posts;
+```
+* data.sql
+``` sql
+insert into user values(10001, sysdate(), 'AB');
+insert into user values(10002, sysdate(), 'Jill');
+insert into user values(10003, sysdate(), 'Jam');
+insert into post values(11001, 'My First Post', 10001);
+insert into post values(11002, 'My Second Post', 10001);
+```
+
+* Output
+
+![Browser](Images/Screenshot_38.png)
+
+---
 
 
 
