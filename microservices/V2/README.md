@@ -146,6 +146,32 @@ limits-service.maximum=998
 ![Browser](Images/Screenshot_02.png)
 
 ---
+## What You Will Learn during this Step 04:
+
+- Setting up Spring Cloud Config Server
+
+* Design
+![Browser](Images/Screenshot_03.png)
+
+On Spring Initializr, choose:
+- Group Id: com.jd.microservices
+- Artifact Id: spring-cloud-config-server
+- Dependencies
+	- DevTools
+	- Config Server
+
+* application.properties
+
+```java
+spring.application.name=spring-cloud-config-server
+server.port=8888
+```
+---
+## What You Will Learn during this Step 05:
+
+- Installing Git and Creating Local Git Repository
+
+
 
 
 
