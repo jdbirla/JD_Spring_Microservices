@@ -82,7 +82,70 @@ public class Limits {
 ![Browser](Images/Screenshot_01.png)
 
 ---
+## What You Will Learn during this Step 03:
 
+- Enhance limits service to pick up configuration from application properties
+
+* com.jd.microservices.limitsservice.configuration.Configuration
+
+```java
+package com.jd.microservices.limitsservice.configuration;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties("limits-service")
+public class Configuration {
+	private int minimum;
+	private int maximum;
+
+	public int getMinimum() {
+		return minimum;
+	}
+
+	public void setMinimum(int minimum) {
+		this.minimum = minimum;
+	}
+
+	public int getMaximum() {
+		return maximum;
+	}
+
+	public void setMaximum(int maximum) {
+		this.maximum = maximum;
+	}
+
+}
+```
+
+* application.properties
+
+```java
+spring.config.import=optional:configserver:http://localhost:8888
+limits-service.minimum=2
+limits-service.maximum=998
+```
+
+* com.jd.microservices.limitsservice.controller.LimitsController
+
+```java
+@Autowired
+	private Configuration configuration;
+	
+	@GetMapping("/limits")
+	public Limits retrieveLimits() {
+		//return new Limits(1,1000);
+		return new Limits(configuration.getMinimum(),configuration.getMaximum());
+	}
+
+```
+
+* Output
+
+![Browser](Images/Screenshot_02.png)
+
+---
 
 
 
