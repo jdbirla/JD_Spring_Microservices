@@ -211,6 +211,35 @@ spring.cloud.config.server.git.uri=file:///C:/JD_Spring_Microservices/microservi
 ![Browser](Images/Screenshot_06.png)
 
 ---
+## What You Will Learn during this Step 07:
+- Connect Limits Service to Spring Cloud Config Server
+- spring.application.name=limit-service  name should be exact same as local-git-localconfig-repo/limit-service properties file
+-  Config server has higher priority then local 
+
+URLS
+- http://localhost:8888/limits-service/default
+- http://localhost:8080/limits
+
+* /limits-service/src/main/resources/application.properties
+```properties
+spring.application.name=limit-service
+spring.config.import=optional:configserver:http://localhost:8888
+limits-service.minimum=2
+limits-service.maximum=998
+```
+
+* Local git repository config server
+![Browser](Images/Screenshot_04.png)
+![Browser](Images/Screenshot_05.png)
+
+* Limit service now connected to config server and getting values from local git
+![Browser](Images/Screenshot_07.png)
+
+---
+
+
+
+
 
 
 
