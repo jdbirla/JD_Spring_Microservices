@@ -205,6 +205,10 @@ spring.cloud.config.server.git.uri=file:///C:/JD_Spring_Microservices/microservi
 ```
 * Local git repository
 ![Browser](Images/Screenshot_04.png)
+![Browser](Images/Screenshot_05.png)
+
+* Output
+![Browser](Images/Screenshot_06.png)
 
 ---
 
