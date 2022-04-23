@@ -182,6 +182,31 @@ limits-service.maximum=996
 
 - Connect Spring Cloud Config Server to Local Git Repository
 
+* /spring-cloud-config-server/src/main/java/com/jd/microservices/springcloudconfigserver/SpringCloudConfigServerApplication.java
+
+```java
+@EnableConfigServer
+@SpringBootApplication
+public class SpringCloudConfigServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudConfigServerApplication.class, args);
+	}
+
+}
+```
+
+* /spring-cloud-config-server/src/main/resources/application.properties
+
+```properties
+spring.application.name=spring-cloud-config-server
+server.port=8888
+spring.cloud.config.server.git.uri=file:///C:/JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo
+```
+* Local git repository
+![Browser](Images/Screenshot_04.png)
+
+---
 
 
 
