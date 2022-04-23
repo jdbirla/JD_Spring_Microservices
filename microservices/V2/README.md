@@ -171,6 +171,16 @@ server.port=8888
 
 - Installing Git and Creating Local Git Repository
 
+* git-localconfig-repo add properties file limit-service properties
+
+```properties
+limits-service.minimum=4
+limits-service.maximum=996
+```
+---
+## What You Will Learn during this Step 06:
+
+- Connect Spring Cloud Config Server to Local Git Repository
 
 
 
