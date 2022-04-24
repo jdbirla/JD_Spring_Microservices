@@ -443,5 +443,138 @@ public class CurrencyExchangeController {
 ![Browser](Images/Screenshot_15.png)
 
 ---
+## What You Will Learn during this Step 12:
+
+- Setting up Dynamic Port in the the Response
+- VM Arguments : -Dserver.port=8001 to launch on 8001
+
+* com.jd.microservices.currencyexchangeservice.CurrencyExchangeController
+- Setting Environment
+
+* Microservices Design
+![Browser](Images/Screenshot_16.png)
 
 
+
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import java.math.BigDecimal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CurrencyExchangeController {
+	
+	@Autowired
+	private Environment environment;
+		
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyExchange retrieveExchangeValue(
+			@PathVariable String from,
+			@PathVariable String to) {
+		CurrencyExchange currencyExchange = new CurrencyExchange(1000L, from, to, 
+								BigDecimal.valueOf(50));
+		String port = environment.getProperty("local.server.port");
+		currencyExchange.setEnvironment(port)	;
+		return currencyExchange;
+		
+	}
+
+}
+```
+
+*com.jd.microservices.currencyexchangeservice.CurrencyExchange
+- Adding `private String environment` and getters and setters
+
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import java.math.BigDecimal;
+
+public class CurrencyExchange {
+	
+	private Long id;
+	
+	private String from;
+	
+	private String to;
+
+	private BigDecimal conversionMultiple;
+	
+	private String environment;
+
+	public CurrencyExchange() {
+		
+	}
+	
+	public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public BigDecimal getConversionMultiple() {
+		return conversionMultiple;
+	}
+
+	public void setConversionMultiple(BigDecimal conversionMultiple) {
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public String getEnvironment() {
+		return environment;
+	}
+
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
+
+	
+}
+```
+* Runing currency-exchange microservice on multiple ports 8000 and 8001
+![Browser](Images/Screenshot_19.png)
+![Browser](Images/Screenshot_20.png)
+
+
+* Output
+
+* http://localhost:8000/currency-exchange/from/USD/to/INR
+![Browser](Images/Screenshot_17.png)
+
+
+* http://localhost:8001/currency-exchange/from/USD/to/INR
+![Browser](Images/Screenshot_18.png)
+
+---
