@@ -304,9 +304,9 @@ limits-service.maximum=996
 ![Browser](Images/Screenshot_09.png)
 
 * Config server qa profiles
-![Browser](Images/Screenshot_09.png)
+![Browser](Images/Screenshot_10.png)
 
 * limit service connected with Config server with dev profiles active
-![Browser](Images/Screenshot_10.png)
+![Browser](Images/Screenshot_11.png)
 
 ---
