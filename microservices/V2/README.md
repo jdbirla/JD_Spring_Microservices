@@ -342,4 +342,106 @@ server.port=8000
 ```
 
 ---
+## What You Will Learn during this Step 11:
+
+- Create a simple hard coded currency exchange service
+
+URL
+- http://localhost:8000/currency-exchange/from/USD/to/INR
+
+*com.jd.microservices.currencyexchangeservice.CurrencyExchange
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import java.math.BigDecimal;
+
+public class CurrencyExchange {
+	
+	private Long id;
+	
+	private String from;
+	
+	private String to;
+
+	private BigDecimal conversionMultiple;
+
+	public CurrencyExchange() {
+		
+	}
+	
+	public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public BigDecimal getConversionMultiple() {
+		return conversionMultiple;
+	}
+
+	public void setConversionMultiple(BigDecimal conversionMultiple) {
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	
+}
+```
+
+
+*com.jd.microservices.currencyexchangeservice.CurrencyExchangeController
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import java.math.BigDecimal;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CurrencyExchangeController {
+		
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyExchange retrieveExchangeValue(
+			@PathVariable String from,
+			@PathVariable String to) {
+		return new CurrencyExchange(1000L, from, to, 
+						BigDecimal.valueOf(50));
+		
+	}
+
+}
+```
+
+* Output
+![Browser](Images/Screenshot_15.png)
+
+---
+
 
