@@ -324,4 +324,22 @@ limits-service.maximum=996
 
 ---
 ## What You Will Learn during this Step 10:
+On Spring Initializr, choose:
+- Group Id: com.in28minutes.microservices
+- Artifact Id: currency-exchange-service
+- Dependencies
+	- Web
+	- DevTools
+	- Actuator
+	- Config Client
+	
+#### /currency-exchange-service/src/main/resources/application.properties Modified
+
+```properties
+spring.config.import=optional:configserver:http://localhost:8888
+spring.application.name=currency-exchange
+server.port=8000
+```
+
+---
 
