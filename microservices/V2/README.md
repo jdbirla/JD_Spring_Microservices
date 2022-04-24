@@ -236,10 +236,77 @@ limits-service.maximum=998
 ![Browser](Images/Screenshot_07.png)
 
 ---
+## What You Will Learn during this Step 08:
+- Configuring Profiles for Limits Service
+
+- http://localhost:8888/limits-service/default
+- http://localhost:8888/limits-service/qa
+- http://localhost:8888/limits-service/dev
+
+* /limits-service/src/main/resources/application.properties added profiles as dev
+
+```properties
+spring.application.name=limit-service
+spring.config.import=optional:configserver:http://localhost:8888
+
+spring.profiles.active=dev
+
+limits-service.minimum=2
+limits-service.maximum=998
+
+```
+
+#### JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo/limit-service.properties existing
+```properties
+limits-service.minimum=4
+limits-service.maximum=990
+```
 
 
+#### JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo/limit-service-dev.properties New
+```properties
+limits-service.minimum=5
+limits-service.maximum=995
+```
+
+#### JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo/limit-service-qa.properties New
+```properties
+limits-service.minimum=6
+limits-service.maximum=994
+
+```
 
 
+#### JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo/microservice-x-dev.properties New
+```properties
+limits-service.minimum=4
+limits-service.maximum=996
+```
 
 
+#### JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo/microservice-x.properties New
+```properties
+limits-service.minimum=4
+limits-service.maximum=996
+```
 
+
+#### JD_Spring_Microservices/microservices/V2/local-git-localconfig-repo/microservice-y.properties New
+```properties
+limits-service.minimum=4
+limits-service.maximum=996
+```
+
+* Config server default profiles
+![Browser](Images/Screenshot_08.png)
+
+* Config server dev profiles
+![Browser](Images/Screenshot_09.png)
+
+* Config server qa profiles
+![Browser](Images/Screenshot_09.png)
+
+* limit service connected with Config server with dev profiles active
+![Browser](Images/Screenshot_10.png)
+
+---
