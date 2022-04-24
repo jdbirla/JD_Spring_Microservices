@@ -325,7 +325,7 @@ limits-service.maximum=996
 ---
 ## What You Will Learn during this Step 10:
 On Spring Initializr, choose:
-- Group Id: com.in28minutes.microservices
+- Group Id: com.jd.microservices
 - Artifact Id: currency-exchange-service
 - Dependencies
 	- Web
