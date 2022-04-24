@@ -578,3 +578,139 @@ public class CurrencyExchange {
 ![Browser](Images/Screenshot_18.png)
 
 ---
+## What You Will Learn during this Step 13:
+
+
+- If you are Spring Boot >=2.5.0, You would need to configure this in application.properties `spring.jpa.defer-datasource-initialization=true` 
+	- OR use schema.sql instead of data.sql
+	- More details - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5.0-M3-Release-Notes#hibernate-and-datasql
+- Complete debugging guide for problems with JPA and Hibernate: https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minutes-TroubleshootingGuide-And-FAQ/jpa-and-hibernate.md#tables-are-not-created
+
+#### /currency-exchange-service/pom.xml Modified
+* New Lines
+```xml
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+```
+
+* com.jd.microservices.currencyexchangeservice.CurrencyExchange
+- Modified changed to entity
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
+@Entity
+public class CurrencyExchange {
+	
+	@Id
+	private Long id;
+	
+	@Column(name = "currency_from")
+	private String from;
+	
+	@Column(name = "currency_to")
+	private String to;
+
+	private BigDecimal conversionMultiple;
+	
+	private String environment;
+
+	public CurrencyExchange() {
+		
+	}
+	
+	public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public BigDecimal getConversionMultiple() {
+		return conversionMultiple;
+	}
+
+	public void setConversionMultiple(BigDecimal conversionMultiple) {
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public String getEnvironment() {
+		return environment;
+	}
+
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
+
+	
+}
+```
+#### /currency-exchange-service/src/main/resources/application.properties Modified
+- New Lines
+```properties
+spring.config.import=optional:configserver:http://localhost:8888
+spring.application.name=currency-exchange
+server.port=8000
+spring.jpa.show-sql=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.h2.console.enabled=true
+spring.jpa.defer-datasource-initialization=true
+```
+
+#### /currency-exchange-service/src/main/resources/schema.sql New
+```sql
+insert into currency_exchange
+(id,currency_from,currency_to,conversion_multiple,environment)
+values(10001,'USD','INR',65,'');
+insert into currency_exchange
+(id,currency_from,currency_to,conversion_multiple,environment)
+values(10002,'EUR','INR',75,'');
+insert into currency_exchange
+(id,currency_from,currency_to,conversion_multiple,environment)
+values(10003,'AUD','INR',25,'');
+```
+* Output
+
+![Browser](Images/Screenshot_21.png)
+
+---
+
+
+
