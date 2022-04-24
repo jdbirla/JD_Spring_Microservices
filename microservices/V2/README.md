@@ -310,3 +310,18 @@ limits-service.maximum=996
 ![Browser](Images/Screenshot_11.png)
 
 ---
+## What You Will Learn during this Step 09:
+- Introduction to Currency Conversion and Exchange Microservices
+
+* Microservices Overview
+![Browser](Images/Screenshot_12.png)
+
+* Currency Exchange Microservice
+![Browser](Images/Screenshot_13.png)
+
+* Currency Conversion Microservice
+![Browser](Images/Screenshot_14.png)
+
+---
+## What You Will Learn during this Step 10:
+
