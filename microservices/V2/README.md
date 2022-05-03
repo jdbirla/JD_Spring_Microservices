@@ -1197,9 +1197,46 @@ eureka.client.fetch-registry=false
 ![Browser](Images/Screenshot_33.png)
 
 ---
+## What You Will Learn during this Step 20:
+- Connect Currency Conversion Microservice & Currency Exchange Microservice to Eureka
 
 
+#### /currency-conversion-service/src/main/resources/application.properties Modified
+New Lines
+```properties
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+```
 
+#### /currency-conversion-service/pom.xml Modified
+New Lines
+```xml
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+```
+
+#### /currency-exchange-service/pom.xml Modified
+New Lines
+```xml
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+```
+#### /currency-exchange-service/src/main/resources/application.properties Modified
+New Lines
+```properties
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+```
+
+* Output
+
+![Browser](Images/Screenshot_34.png)
+
+---
 
 
 
