@@ -1101,8 +1101,97 @@ If everything is fine
 
 ---
 
+### Debugging problems with Feign  Eureka - Step 19 to 21
 
 
+If you see an error of this kind - Wait for 5 minutes and give it a try again!
+
+```
+com.netflix.client.ClientException: Load balancer does not have available server for client: 
+```
+
+(0) Give these settings a try individually in application.properties of all microservices (currency-exchange, currency-conversion, api-gateway) to see if they help
+
+```
+eureka.instance.prefer-ip-address=true
+```
+
+OR
+
+```
+eureka.instance.hostname=localhost
+```
+
+(1) Ensure @EnableEurekaServer is enabled on NetflixEurekaNamingServerApplication
+
+(2) spring-cloud-starter-netflix-eureka-client dependency is added in both the client application pom.xml files.
+
+(3) eureka.client.service-url.default-zone=http://localhost:8761/eureka is configured in application.properties of both currency-exchange-service and currency-conversion-service
+
+(4) Ensure that both the services are registered with Eureka at http://localhost:8761/
+
+(5) Ensure that you are using the right url - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+(6) Ensure that you are able to hit the urls directly - http://localhost:8000/currency-exchange/from/USD/to/INR and http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+(8) Try if it works when you include the following property in application.properties for currency-conversion-service and currency-exchange-service
+
+```
+eureka.instance.hostname=localhost
+```
+(9) Compare code against the complete list of components below (Step 19 to Step 21).
+
+If everything is fine
+
+(1) Make sure you start the services in this order (a)netflix-eureka-naming-server (b)currency-exchange-service (c)currency-conversion-service
+
+(2) Make sure all the components are registered with naming server.
+
+(3) Give a minute of warm up time!
+
+(4) If you get an error once, execute it again after a few minutes
+
+
+---
+## What You Will Learn during this Step 19:
+- Understand Naming Server and Setting up Eureka Naming Server
+
+* Design
+
+![Browser](Images/Screenshot_31.png)
+![Browser](Images/Screenshot_32.png)
+
+* /naming-server/src/main/java/com/jd/microservices/namingserver/NamingServerApplication.java adding - Add @EnableEurekaServer
+```java
+package com.jd.microservices.namingserver;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class NamingServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(NamingServerApplication.class, args);
+	}
+
+}
+
+```
+
+#### /naming-server/src/main/resources/application.properties Modified
+
+```properties
+spring.application.name=naming-server
+server.port=8761
+
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+
+```
+---
 
 
 
