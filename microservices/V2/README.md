@@ -770,7 +770,24 @@ public class CurrencyExchangeController {
 ![Browser](Images/Screenshot_23.png)
 
 ---
-
+## What You Will Learn during this Step 15:
+- Setting up Currency Conversion Microservice
+On Spring Initializr, choose:
+- Group Id: com.jd.microservices
+- Artifact Id: currency-conversion-service
+- Dependencies
+	- Web
+	- DevTools
+	- Actuator
+	- Config Client
+Create Currency Conversion Microservice using Spring Initializr.
+#### /currency-conversion-service/src/main/resources/application.properties Modified
+```properties
+spring.application.name=currency-conversion
+server.port=8100
+spring.config.import=optional:configserver:http://localhost:8888
+```
+---
 
 
 
