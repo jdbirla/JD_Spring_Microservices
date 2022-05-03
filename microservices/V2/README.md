@@ -1237,6 +1237,39 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ![Browser](Images/Screenshot_34.png)
 
 ---
+## What You Will Learn during this Step 22:
+- Load Balancing with Eureka, Feign & Spring Cloud LoadBalancer
+
+* com.jd.microservices.currencyconversionservice.CurrencyExchangeProxy
+```java
+package com.jd.microservices.currencyconversionservice;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+//@FeignClient(name="currency-exchange", url="localhost:8000")
+@FeignClient(name="currency-exchange")
+public interface CurrencyExchangeProxy {
+	
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyConversion retrieveExchangeValue(
+			@PathVariable("from") String from,
+			@PathVariable("to") String to);
+
+}
+```
+* Output
+
+![Browser](Images/Screenshot_35.png)
+![Browser](Images/Screenshot_36.png)
+![Browser](Images/Screenshot_37.png)
+![Browser](Images/Screenshot_38.png)
+
+---
+
+
 
 
 
