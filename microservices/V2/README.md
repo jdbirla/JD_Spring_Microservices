@@ -1268,8 +1268,81 @@ public interface CurrencyExchangeProxy {
 ![Browser](Images/Screenshot_38.png)
 
 ---
+### Debugging problems with Spring Cloud API Gateway - Step 22 to Step 25
+---
+(1) Make sure you are using the right URLs?
+Discovery
+- http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion-feign/from/USD/to/INR/quantity/10
+LowerCase
+- http://localhost:8765/currency-exchange/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/INR/quantity/10
+Discovery Disabled and Custom Routes Configured
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+(2) Enable wiretap to see more details
+```
+spring.cloud.gateway.httpserver.wiretap=true and spring.cloud.gateway.httpclient.wiretap=true
+```
+(3) Give these settings a try individually in application.properties of all microservices (currency-exchange, currency-conversion, api-gateway) to see if they help
+```
+eureka.instance.prefer-ip-address=true
+```
+OR
+```
+eureka.instance.hostname=localhost
+```
+(4) Are you using right configuration?
+```
+spring.application.name=api-gateway
+server.port=8765
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+#spring.cloud.gateway.discovery.locator.enabled=true
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+```
+(5) Compare against the code for ApiGatewayConfiguration below?
+(6) Compare against the code for LoggingFilter below?
+(7) Ensure that all the three services are registered with Eureka at http://localhost:8761/.
+(8) Try if it works when you include the following property in application.properties for currency-conversion-service and currency-exchange-service
+```
+eureka.instance.hostname=localhost
+```
+(9) Some student reported success when using lower-case-service-id instead of spring.cloud.gateway.discovery.locator.lowerCaseServiceId. See if it helps!
+```
+spring.cloud.gateway.discovery.locator.enabled=true
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+```
+(10) Compare code against the complete list of components below.
+If everything is fine
+(1) Make sure you start the services in this order (a) netflix-eureka-naming-server (b) netflix-zuul-api-gateway-server (c)currency-exchange-service (d)currency-conversion-service
+(2) Make sure all the components are registered with naming server.
+(3) Give a minute of warm up time!
+(4) If you get an error once, execute it again after 5 minutes
 
-
+---
+## What You Will Learn during this Step 22:
+- Setting up Spring Cloud API Gateway
+On Spring Initializr, choose:
+- Group Id: com.jd.microservices
+- Artifact Id: api-gateway
+- Dependencies
+	- DevTools
+	- Actuator
+	- Config Client
+	- Eureka Discovery Client
+	- Gateway (Spring Cloud Routing)
+#### /api-gateway/src/main/resources/application.properties Modified
+```properties
+spring.application.name=api-gateway
+server.port=8765
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+```
+---
 
 
 
