@@ -995,7 +995,7 @@ URL
 - http://localhost:8100/currency-conversion-feign/from/AUD/to/INR/quantity/10
 
 * /currency-conversion-service/pom.xml Modified
-```pom
+```xml
 <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
