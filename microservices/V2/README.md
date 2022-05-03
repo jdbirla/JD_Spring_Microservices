@@ -1033,6 +1033,24 @@ public class CurrencyConversionController {
 
 ![Browser](Images/Screenshot_30.png)
 
+
+### Debugging problems with Feign
+
+(1) Ensure that you have the annotation @EnableFeignClients with right packages on the class public class CurrencyConversionServiceApplication @EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
+(2) Ensure you have path variables defined for from and to with the key from and to as shown in CurrencyExchangeServiceProxy - @PathVariable("from") String from, @PathVariable("to") String to
+NOTE : Some students reported adding "from" and "to" to @PathVariables helped!
+```
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyConversion retrieveExchangeValue(
+			@PathVariable("from") String from,
+			@PathVariable("to") String to);
+```
+If everything is fine
+(-1) What Step was code working until?
+(0) What is the step where you are facing a Problem?
+(1) Make sure you start the services in this order (a)currency-exchange-service (b)currency-conversion-service
+(2) Give a minute of warm up time!
+
 ---
 
 
