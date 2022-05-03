@@ -1448,4 +1448,44 @@ public class ApiGatewayConfiguration {
 ![Browser](Images/Screenshot_46.png)
 
 ---
+## What You Will Learn during this Step 25:
+- Implementing Spring Cloud Gateway Logging Filter
+
+* com.jd.microservices.apigateway.LoggingFilter
+```java
+package com.jd.microservices.apigateway;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+
+import reactor.core.publisher.Mono;
+
+@Component
+public class LoggingFilter implements GlobalFilter {
+
+	private Logger logger = LoggerFactory.getLogger(LoggingFilter.class);
+	
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, 
+			GatewayFilterChain chain) {
+		logger.info("Path of the request received -> {}", 
+				exchange.getRequest().getPath());
+		return chain.filter(exchange);
+	}
+
+}
+```
+
+* Output
+
+![Browser](Images/Screenshot_47.png)
+
+
+---
+
+
 
