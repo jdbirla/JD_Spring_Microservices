@@ -1342,6 +1342,40 @@ spring.application.name=api-gateway
 server.port=8765
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
+
+* Output
+
+![Browser](Images/Screenshot_39.png)
+
+---
+## What You Will Learn during this Step 22:
+- Enabling Discovery Locator with Eureka for Spring Cloud Gateway
+
+Initial
+- http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion-feign/from/USD/to/INR/quantity/10
+Intermediate
+- http://localhost:8765/currency-exchange/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+#### /api-gateway/src/main/resources/application.properties Modified
+```properties
+spring.application.name=api-gateway
+server.port=8765
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+spring.cloud.gateway.discovery.locator.enabled=true
+spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+```
+* Output
+
+![Browser](Images/Screenshot_40.png)
+![Browser](Images/Screenshot_41.png)
+![Browser](Images/Screenshot_42.png)
+
 ---
 
 
