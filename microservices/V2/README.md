@@ -1348,7 +1348,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ![Browser](Images/Screenshot_39.png)
 
 ---
-## What You Will Learn during this Step 22:
+## What You Will Learn during this Step 23:
 - Enabling Discovery Locator with Eureka for Spring Cloud Gateway
 
 Initial
