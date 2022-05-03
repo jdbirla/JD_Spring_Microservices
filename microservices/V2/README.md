@@ -1486,6 +1486,69 @@ public class LoggingFilter implements GlobalFilter {
 
 
 ---
+### Debugging Circuit Breaker - 26 to 29
+---
+(0) Can you use maxAttempts instead of maxRetryAttempts?
+```
+resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
+#resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
+```
+(1) There is not equivalent watch command in Windows. All we can do is to run the following command on Window's command prompt:
+```
+for /l %g in () do @(curl http://localhost:8000/sample-api & timeout /t 5)
+```
+The output will be:
+```
+fallback-response
+wait for 5/4/3/2/1 seconds, press a key to continue....
+```
+Reference: https://www.shellhacks.com/windows-watch-command-equivalent-cmd-powershell/
 
+---
+## What You Will Learn during this Step 26:
+- Getting started with Circuit Breaker - Resilience4j
 
+#### /currency-exchange-service/pom.xml Modified
+New Lines
+```xml
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot2</artifactId>
+		</dependency>
+```
 
+* com.jd.microservices.currencyexchangeservice.CircuitBreakerController
+
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+
+@RestController
+public class CircuitBreakerController {
+	
+	private Logger logger = 
+				LoggerFactory.getLogger(CircuitBreakerController.class);
+	
+	@GetMapping("/sample-api")
+	public String sampleApi() {
+		logger.info("Sample api call received");
+		return "sample-api";
+	}
+}
+```
+
+---
