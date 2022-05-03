@@ -1191,6 +1191,11 @@ eureka.client.register-with-eureka=false
 eureka.client.fetch-registry=false
 
 ```
+
+* Output
+
+![Browser](Images/Screenshot_33.png)
+
 ---
 
 
