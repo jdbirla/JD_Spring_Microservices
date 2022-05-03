@@ -994,6 +994,54 @@ URL
 - http://localhost:8000/currency-exchange/from/AUD/to/INR
 - http://localhost:8100/currency-conversion-feign/from/AUD/to/INR/quantity/10
 
+* /currency-conversion-service/pom.xml Modified
+```pom
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+```
+
+* com.jd.microservices.currencyconversionservice.CurrencyExchangeProxy
+```java
+package com.jd.microservices.currencyconversionservice;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+@FeignClient(name="currency-exchange", url="localhost:8000")
+public interface CurrencyExchangeProxy {
+	
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyConversion retrieveExchangeValue(
+			@PathVariable("from") String from,
+			@PathVariable("to") String to);
+
+}
+```
+
+* com.jd.microservices.currencyconversionservice.CurrencyConversionServiceApplication adding annotation EnableFeignClients
+```java
+package com.jd.microservices.currencyconversionservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+@SpringBootApplication
+@EnableFeignClients
+public class CurrencyConversionServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CurrencyConversionServiceApplication.class, args);
+	}
+
+}
+
+```
+
 
 * com.jd.microservices.currencyconversionservice.CurrencyConversionController adding method calculateCurrencyConversionFeign
 ```java
