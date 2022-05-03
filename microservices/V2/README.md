@@ -1378,8 +1378,74 @@ spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 ![Browser](Images/Screenshot_41.png)
 ![Browser](Images/Screenshot_42.png)
 
+
 ---
+## What You Will Learn during this Step 24:
+- Exploring Routes with Spring Cloud Gateway
 
+Final
 
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
+#### /api-gateway/src/main/resources/application.properties Modified
+Commented
+```properties
+#spring.cloud.gateway.discovery.locator.enabled=true
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+```
+```properties
+spring.application.name=api-gateway
+server.port=8765
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+#spring.cloud.gateway.discovery.locator.enabled=true
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+```
+* com.jd.microservices.apigateway.ApiGatewayConfiguration
+```java
+package com.jd.microservices.apigateway;
+
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class ApiGatewayConfiguration {
+	
+	@Bean
+	public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
+		return builder.routes()
+				.route(p -> p
+						.path("/get")
+						.filters(f -> f
+								.addRequestHeader("MyHeader", "MyURI")
+								.addRequestParameter("Param", "MyValue"))
+						.uri("http://httpbin.org:80"))
+				.route(p -> p.path("/currency-exchange/**")
+						.uri("lb://currency-exchange"))
+				.route(p -> p.path("/currency-conversion/**")
+						.uri("lb://currency-conversion"))
+				.route(p -> p.path("/currency-conversion-feign/**")
+						.uri("lb://currency-conversion"))
+				.route(p -> p.path("/currency-conversion-new/**")
+						.filters(f -> f.rewritePath(
+								"/currency-conversion-new/(?<segment>.*)", 
+								"/currency-conversion-feign/${segment}"))
+						.uri("lb://currency-conversion"))
+				.build();
+	}
+
+}
+```
+* Output
+
+![Browser](Images/Screenshot_43.png)
+![Browser](Images/Screenshot_44.png)
+![Browser](Images/Screenshot_45.png)
+![Browser](Images/Screenshot_46.png)
+
+---
 
