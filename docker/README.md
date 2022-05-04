@@ -37,6 +37,17 @@
 ![Browser](Images/Screenshot_04.png)
 
 ```sh
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\WINDOWS\system32> docker --version
+Docker version 20.10.14, build a224086
+PS C:\WINDOWS\system32>
+```
+
+```sh
 RECOMMENDATION : Use PowerShell in Windows!
 Recommendation 1
 
