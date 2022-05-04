@@ -1641,3 +1641,92 @@ resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
 
 
 ---
+## What You Will Learn during this Step 28 and 29:
+-  Step 28 - Playing with Circuit Breaker Features of Resilience4j
+-  Step 29 - Exploring Rate Limiting and BulkHead Features of Resilience4j
+
+* com.jd.microservices.currencyexchangeservice.CircuitBreakerController
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+
+@RestController
+public class CircuitBreakerController {
+
+	private Logger logger = LoggerFactory.getLogger(CircuitBreakerController.class);
+
+	@GetMapping("/sample-api")
+	//@Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")
+	//@CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+	//@RateLimiter(name="default")
+	@Bulkhead(name="default")
+	public String sampleApi() {
+		logger.info("Sample api call received");
+		/*
+		 * ResponseEntity<String> forEntity = new
+		 * RestTemplate().getForEntity("http://localhost:8080/some-dummy-url",
+		 * String.class); return forEntity.getBody();
+		 */
+		return "Sample-API";
+	}
+	
+	public String hardcodedResponse(Exception ex) {
+		return "fallback-response";
+	}
+}
+```
+
+* /currency-exchange-service/src/main/resources/application.properties
+```properties
+spring.config.import=optional:configserver:http://localhost:8888
+spring.application.name=currency-exchange
+server.port=8000
+spring.jpa.show-sql=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.h2.console.enabled=true
+spring.jpa.defer-datasource-initialization=true
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+## resilience4j.retry.instances.sample-api.maxRetryAttempts=5 OLD
+
+### Maximum retry when there is any error 
+resilience4j.retry.instances.sample-api.maxAttempts=5
+
+### Retry wait for 1s
+resilience4j.retry.instances.sample-api.waitDuration=1s
+
+### Retry wait increase exponentaily 1sec 2sec 4 sec etc..
+resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
+
+###CircuitBreaker:: Threshold limit percentages after this percentages of request circuitbreaker will open and service won't call
+#resilience4j.circuitbreaker.instances.default.failureRateThreshold=90
+
+### RateLimiter :: Limit the service rate based on time and nomber of request
+resilience4j.ratelimiter.instances.default.limitForPeriod=2
+resilience4j.ratelimiter.instances.default.limitRefreshPeriod=10s
+
+### Bulkhead :: Max Concurrent calls
+resilience4j.bulkhead.instances.default.maxConcurrentCalls=10
+resilience4j.bulkhead.instances.sample-api.maxConcurrentCalls=10
+
+
+```
+
+* RateLimiter example
+
+![Browser](Images/Screenshot_53.png)
+
+---
+
+
