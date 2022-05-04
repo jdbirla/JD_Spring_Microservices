@@ -36,6 +36,31 @@
 
 ![Browser](Images/Screenshot_04.png)
 
+```sh
+RECOMMENDATION : Use PowerShell in Windows!
+Recommendation 1
+
+If you are using Windows, make sure that you use PowerShell instead of Command Prompt.
+
+
+
+Recommendation 2
+
+If you are using Window 10 and are using docker toolbox
+
+=> Use 192.168.99.100 instead of localhost.
+
+Note: If 192.168.99.100 does not work, you can find the IP by using the command docker-machine ip
+
+
+
+Reason
+
+In Window 10 when using docker toolbox, docker is configured to use the default machine with IP 192.168.99.100
+
+
+```
+
 ---
 
 
