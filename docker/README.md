@@ -24,13 +24,17 @@
 ![Browser](Images/Screenshot_03.png)
 
 5. Excute below commands
-
+  
+   ```sh
    1. Open PowerShell/CMD as administrator 
    2. Run the command: bcdedit /set hypervisorlaunchtype auto
    3. dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All
    4. Restart your computer
+   ```
 
-6. ![Browser](Images/Screenshot_04.png)
+6. Docker is running
+
+![Browser](Images/Screenshot_04.png)
 
 ---
 
