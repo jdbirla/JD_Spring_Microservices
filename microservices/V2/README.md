@@ -1508,6 +1508,13 @@ Reference: https://www.shellhacks.com/windows-watch-command-equivalent-cmd-power
 ## What You Will Learn during this Step 26:
 - Getting started with Circuit Breaker - Resilience4j
 
+
+* Design 
+
+![Browser](Images/Screenshot_48.png)
+
+
+
 #### /currency-exchange-service/pom.xml Modified
 New Lines
 ```xml
@@ -1550,5 +1557,87 @@ public class CircuitBreakerController {
 	}
 }
 ```
+
+---
+## What You Will Learn during this Step 27:
+- Playing with Resilience4j - Retry and Fallback Methods
+
+* com.jd.microservices.currencyexchangeservice.CircuitBreakerController
+
+```java
+package com.jd.microservices.currencyexchangeservice;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import io.github.resilience4j.retry.annotation.Retry;
+
+@RestController
+public class CircuitBreakerController {
+
+	private Logger logger = LoggerFactory.getLogger(CircuitBreakerController.class);
+
+	@GetMapping("/sample-api")
+	@Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")
+	public String sampleApi() {
+		logger.info("Sample api call received");
+		ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8080/some-dummy-url",
+				String.class);
+		return forEntity.getBody();
+	}
+	
+	public String hardcodedResponse(Exception ex) {
+		return "fallback-response";
+	}
+}
+```
+
+* /currency-exchange-service/src/main/resources/application.properties
+```properties
+spring.config.import=optional:configserver:http://localhost:8888
+spring.application.name=currency-exchange
+server.port=8000
+spring.jpa.show-sql=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.h2.console.enabled=true
+spring.jpa.defer-datasource-initialization=true
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+## resilience4j.retry.instances.sample-api.maxRetryAttempts=5 OLD
+
+### Maximum retry when there is any error 
+resilience4j.retry.instances.sample-api.maxAttempts=5
+
+### Retry wait for 1s
+resilience4j.retry.instances.sample-api.waitDuration=1s
+
+### Retry wait increase exponentaily 1sec 2sec 4 sec etc..
+resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
+
+
+
+```
+
+###  resilience4j.retry.instances.sample-api.maxAttempts=5
+
+![Browser](Images/Screenshot_49.png)
+
+###  Fallback response
+
+![Browser](Images/Screenshot_50.png)
+
+###  resilience4j.retry.instances.sample-api.waitDuration=1s
+
+![Browser](Images/Screenshot_51.png)
+
+###  resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
+
+![Browser](Images/Screenshot_52.png)
+
 
 ---
