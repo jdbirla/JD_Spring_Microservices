@@ -187,3 +187,60 @@ trace id: 53cb1a88ac9f70fc
 
 ---
 
+## What You Will Learn during this Step 13:
+
+- Connecting Currency Conversion Microservice and API Gateway with Zipkin
+
+### /currency-conversion-service/pom.xml
+```xml
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+```
+* /currency-conversion-service/src/main/resources/application.properties
+
+```properties
+spring.sleuth.sampler.probability=1.0
+
+```
+
+
+### /api-gateway/pom.xml
+```xml
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+```
+* /api-gateway/src/main/resources/application.properties
+
+```properties
+spring.sleuth.sampler.probability=1.0
+
+```
+![Browser](Images/Screenshot_11.png)
+
+---
+
+
