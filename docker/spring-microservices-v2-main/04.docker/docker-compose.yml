@@ -1,0 +1,13 @@
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:

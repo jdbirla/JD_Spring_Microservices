@@ -243,4 +243,103 @@ spring.sleuth.sampler.probability=1.0
 
 ---
 
+## What You Will Learn during this Step 14:
+
+- Getting Setup with Microservices for Creating Container Images
+
+### URLS
+
+#### Currency Exchange Service
+- http://localhost:8000/currency-exchange/from/USD/to/INR
+
+#### Currency Conversion Service
+- http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+#### Eureka
+- http://localhost:8761/
+
+#### Zipkin
+- http://localhost:9411/
+
+#### API GATEWAY
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+
+
+---
+## What You Will Learn during this Step 15:
+
+- Creating Container Image for Currency Exchange Microservice
+- Here we are not using spotify insted we are using springboot maven plugin
+
+* pom.xml in all projects
+```xml
+<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>jbirla/mmv2-${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>				
+			</plugin>
+```
+
+![Browser](Images/Screenshot_12.png)
+
+```
+eclipse:spring-boot:build-image
+CMD: mvn spring-boot:build-image
+skip test : mvn spring-boot:build-image -DskiptTests
+```
+
+---
+## What You Will Learn during this Step 16:
+
+- Getting Started with Docker Compose - Currency Exchange Microservice
+
+### C:\D_Drive\DXC\Learning\Projects\JD_Spring_Microservices\docker\spring-microservices-v2-main\04.docker\docker-compose.yml
+```
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:
+```
+```
+
+user@DESKTOP-AS2FQOH MINGW64 /c/D_Drive/DXC/Learning/Projects/JD_Spring_Microservices/docker/spring-microservices-v2-main/04.docker (master)
+$ docker-compose up
+
+```
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
