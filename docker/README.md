@@ -126,4 +126,64 @@ $ docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
 ## What You Will Learn during this Step 11:
 - Launching Zipkin Container using Docker
 
+```
+
+user@DESKTOP-AS2FQOH MINGW64 /c/D_Drive/DXC/Learning/Projects/JD_Spring_Microservices (master)
+$ docker run -p 9411:9411 openzipkin/zipkin:2.23
+Unable to find image 'openzipkin/zipkin:2.23' locally
+2.23: Pulling from openzipkin/zipkin
+Digest: sha256:b3435e485f1e73266dba48ae56814c6731ffb76563a0b809456876f29a575f6b
+Status: Downloaded newer image for openzipkin/zipkin:2.23
+
+```
+![Browser](Images/Screenshot_07.png)
+
+---
+
+## What You Will Learn during this Step 12:
+
+- Connecting Currency Exchange Microservice with Zipkin
+
+![Browser](Images/Screenshot_08.png)
+
+### /currency-exchange-service/pom.xml
+```xml
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+```
+* /currency-exchange-service/src/main/resources/application.properties
+
+```properties
+spring.sleuth.sampler.probability=1.0
+
+```
+
+* com.jd.microservices.currencyexchangeservice.CurrencyExchangeController
+```
+	private Logger logger = LoggerFactory.getLogger(CurrencyExchangeController.class);
+	logger.info("retrieveExchangeValue called with {} {}", from ,to);
+
+```
+* Console output
+```
+trace id: 53cb1a88ac9f70fc
+2022-05-14 06:46:23.670  INFO [currency-exchange,53cb1a88ac9f70fc,53cb1a88ac9f70fc] 4028 --- [nio-8000-exec-1] c.j.m.c.CurrencyExchangeController       : retrieveExchangeValue called with USD INR
+```
+
+![Browser](Images/Screenshot_09.png)
+![Browser](Images/Screenshot_10.png)
+
+---
 
