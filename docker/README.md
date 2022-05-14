@@ -3,6 +3,10 @@
 ## What You Will Learn during this Step 00:
 - Docker overview
 
+### Docker overview and installatio on windows10
+https://github.com/jdbirla/jd-docker-crash-course/blob/master/Getting_Started_with_Docker.md
+
+
 ![Browser](Images/Microservices.png)
 
 ![Browser](Images/Docker.png)
