@@ -423,6 +423,7 @@ $ docker-compose up
 
 - Running Spring Cloud API Gateway with Docker Compose
 
+### C:\D_Drive\DXC\Learning\Projects\JD_Spring_Microservices\docker\spring-microservices-v2-main\04.docker\docker-compose.yml
 
 ```
 version: "3.7"  # optional since v1.27.0
@@ -481,8 +482,176 @@ networks:
 
 - Running Zipkin with Docker Compose
 
+### C:\D_Drive\DXC\Learning\Projects\JD_Spring_Microservices\docker\spring-microservices-v2-main\04.docker\docker-compose.yml
+
+```
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  currency-conversion:
+    image: jbirla/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      
+  api-gateway:
+    image: jbirla/mmv2-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  naming-server:
+    image: jbirla/mmv2-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-jd-network
+      
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-jd-network
+    restart: always #Restart if there is a problem starting up
+
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:
+  ```
+---
+## What You Will Learn during this Step 21:
+
+- Running Zipkin and RabbitMQ with Docker Compose
+
+### C:\D_Drive\DXC\Learning\Projects\JD_Spring_Microservices\docker\spring-microservices-v2-main\04.docker\docker-compose.yml
+
+```
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+      - rabbitmq
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+
+  currency-conversion:
+    image: jbirla/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+      - rabbitmq
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      
+      
+  api-gateway:
+    image: jbirla/mmv2-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+      - rabbitmq
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      
+
+  naming-server:
+    image: jbirla/mmv2-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-jd-network
+      
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-jd-network
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+    depends_on:
+      - rabbitmq
+    restart: always #Restart if there is a problem starting up    
+    
+  rabbitmq:
+    image: rabbitmq:3.8.12-management
+    mem_limit: 300m
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - currency-jd-network
+    restart: always #Restart if there is a problem starting up
 
 
+
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:
+```
+![Browser](Images/Screenshot_13.png)
+
+![Browser](Images/Screenshot_14.png)
+
+---
 
 
 
