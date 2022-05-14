@@ -12,6 +12,8 @@ https://github.com/jdbirla/jd-docker-crash-course/blob/master/Getting_Started_wi
 ![Browser](Images/Docker.png)
 
 ---
+## What You Will Learn during this Step 01:
+- Installing Docker - Docker
 
 ## How to install docker into Windows
 
@@ -78,8 +80,50 @@ In Window 10 when using docker toolbox, docker is configured to use the default 
 
 ---
 
+## What You Will Learn during this Step 02:
+- Your First Docker Usecase - Deploy a Spring Boot Application
 
+---
+## What You Will Learn during this Step 03:
+- Important Docker Concepts - Registry, Repository, Tag, Image and Container
+```
+user@DESKTOP-AS2FQOH MINGW64 /c/D_Drive/DXC/Learning/Projects/JD_Spring_Microservices (master)
+$ docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
 
+```
+---
+## What You Will Learn during this Step 04:
+- Playing with Docker Images and Containers
 
+---
+## What You Will Learn during this Step 05:
+- Understanding Docker Architecture - Docker Client, Docker Engine
+
+---
+## What You Will Learn during this Step 06:
+- Why is Docker Popular
+
+---
+## What You Will Learn during this Step 07:
+- Playing with Docker Images
+
+---
+## What You Will Learn during this Step 08:
+- Playing with Docker Containers
+
+--- 
+## What You Will Learn during this Step 09:
+- Playing with Docker Commands - stats, system
+
+--- 
+## What You Will Learn during this Step 10:
+- Introduction to Distributed Tracing
+
+![Browser](Images/Screenshot_05.png)
+![Browser](Images/Screenshot_06.png)
+
+---
+## What You Will Learn during this Step 11:
+- Launching Zipkin Container using Docker
 
 
