@@ -326,16 +326,160 @@ $ docker-compose up
 ```
 
 ---
+## What You Will Learn during this Step 17:
+
+- Running Eureka Naming Server with Docker Compose
+
+
+### C:\D_Drive\DXC\Learning\Projects\JD_Spring_Microservices\docker\spring-microservices-v2-main\04.docker\docker-compose.yml
+```
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  naming-server:
+    image: jbirla/mmv2-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-jd-network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:
+```
+```
+user@DESKTOP-AS2FQOH MINGW64 /c/D_Drive/DXC/Learning/Projects/JD_Spring_Microservices/docker/spring-microservices-v2-main/04.docker (master)
+$ docker-compose up
+
+```
+
+---
+## What You Will Learn during this Step 18:
+
+- Running Currency Conversion Microservice with Docker Compose
 
 
 
+### C:\D_Drive\DXC\Learning\Projects\JD_Spring_Microservices\docker\spring-microservices-v2-main\04.docker\docker-compose.yml
+```
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  currency-conversion:
+    image: jbirla/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  naming-server:
+    image: jbirla/mmv2-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-jd-network
+
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:
+```
+```
+user@DESKTOP-AS2FQOH MINGW64 /c/D_Drive/DXC/Learning/Projects/JD_Spring_Microservices/docker/spring-microservices-v2-main/04.docker (master)
+$ docker-compose up
+
+```
+
+---
+## What You Will Learn during this Step 19:
+
+- Running Spring Cloud API Gateway with Docker Compose
 
 
+```
+version: "3.7"  # optional since v1.27.0
+services:
+  currency-exchange:
+    image: jbirla/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
 
+  currency-conversion:
+    image: jbirla/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      
+  api-gateway:
+    image: jbirla/mmv2-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
 
+  naming-server:
+    image: jbirla/mmv2-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-jd-network
 
+# Networks to be created to facilitate communication between containers
+networks:
+  currency-jd-network:
 
+```
+---
+## What You Will Learn during this Step 20:
 
+- Running Zipkin with Docker Compose
 
 
 

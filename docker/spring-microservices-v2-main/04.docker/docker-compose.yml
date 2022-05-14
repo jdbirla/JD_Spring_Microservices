@@ -7,6 +7,42 @@ services:
       - "8000:8000"
     networks:
       - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  currency-conversion:
+    image: jbirla/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      
+  api-gateway:
+    image: jbirla/mmv2-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-jd-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
+  naming-server:
+    image: jbirla/mmv2-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 7000m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-jd-network
 
 # Networks to be created to facilitate communication between containers
 networks:
