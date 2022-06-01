@@ -84,7 +84,7 @@
 ![Browser](Images/Screenshot_6.png)
 
 ---
-## What You Will Learn during this Step 1:
+## What You Will Learn during this Step 13:
 
 -  Step 13 - Understanding Kubernetes Architecture - Master Node and Nodes
 
@@ -96,63 +96,63 @@
 
 
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 14:
 
 -  Step 14 - Setup Currency Exchange & Currency Conversion Microservices - K8S versions
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 15:
 
 -  Step 15 - Create Container images for Currency Exchange & Currency Conversion Microservices
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 16:
 
 -  Step 16 - Deploy Microservices to Kubernetes & Understand Service Discovery
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 17:
 
 -  Step 17 - Creating Declarative Configuration Kubernetes YAML for Microservices
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 18:
 
 -  Step 18 - Clean up Kubernetes YAML for Microservices
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 19:
 
 -  Step 19 - Enable Logging and Tracing APIs in Google Cloud Platform
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 20:
 
 -  Step 20 - Deploying Microservices using Kubernetes YAML Configuration
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 21:
 
 -  Step 21 - Playing with Kubernetes Declarative YAML Configuration
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 22:
 
 -  Step 22 - Creating Environment Variables to enable Microservice Communication
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 23:
 
 -  Step 23 - Understanding Centralized Configuration in Kubernetes - Config Maps
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 24:
 
 -  Step 24 - Exploring Centralized Logging and Monitoring in GKE
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 25:
 
 -  Step 25 - Exploring Microservices Deployments with Kubernetes
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 26:
 
 -  Step 26 - Configuring Liveness and Readiness Probes for Microservices with K8S
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 27:
 
 -  Step 27 - Autoscaling Microservices with Kubernetes
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 28:
 
 -  Step 28 - Delete Kubernetes Cluster and Thank You!
 ---
