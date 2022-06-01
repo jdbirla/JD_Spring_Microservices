@@ -14,56 +14,87 @@
 ## What You Will Learn during this Step 01:
 - Getting Started with Docker, Kubernetes and Google Kubernetes Engine
 
+![Browser](Images/Screenshot_3.png)
+
 ---
 ## What You Will Learn during this Step 02:
 
 -  Step 02 - Creating Google Cloud Account
+
+
 ---
 
 ## What You Will Learn during this Step 03:
 
 -  Step 03 - Creating Kubernetes Cluster with Google Kubernete Engine (GKE)
+
+![Browser](Images/Screenshot_4.png)
+
 ---
 
 ## What You Will Learn during this Step 04:
 
 -  Step 04 - Review Kubernetes Cluster and Learn Few Fun Facts about Kubernetes
+
+
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 05:
 
 -  Step 05 - Deploy Your First Spring Boot Application to Kubernetes Cluster
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 06:
 
 -  Step 06 - Quick Look at Kubernetes Concepts - Pods, Replica Sets and Deployment
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 07:
 
 -  Step 07 - Understanding Pods in Kubernetes
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 08:
 
 -  Step 08 - Understanding ReplicaSets in Kubernetes
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 09:
 
 -  Step 09 - Understanding Deployment in Kubernetes
+
+![Browser](Images/Screenshot_5.png)
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 10:
 
 -  Step 10 - Quick Review of Kubernetes Concepts - Pods, Replica Sets and Deployment
+
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 11:
 
 -  Step 11 - Understanding Services in Kubernetes
+
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 12:
 
 -  Step 12 - Quick Review of GKE on Google Cloud Console 
+![Browser](Images/Screenshot_6.png)
+
 ---
-## What You Will Learn during this Step 04:
+## What You Will Learn during this Step 1:
 
 -  Step 13 - Understanding Kubernetes Architecture - Master Node and Nodes
+
+![Browser](Images/Screenshot_6.png)
+
+![Browser](Images/Screenshot_7.png)
+
+![Browser](Images/Screenshot_8.png)
+
+
 ---
 ## What You Will Learn during this Step 04:
 
