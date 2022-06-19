@@ -19,7 +19,25 @@
    12. Intruducing ``` Spring Cloud API Gateway (Previous Option Zuul) ``` [Solution for Problem (currency-conversion/currency-exchange) : For common feature implementation like  (Cross cutting concerns)Authentication , logging ,Security and Active/Active configuration we required API gateway , Using API gateway from sigle URL we can access all services]
    13. Intruducing ``` Routing using Spring Cloud API Gateway  ``` [Solution for Problem (currency-conversion/currency-exchange) : Using RouteLocator we can create different routes for different urls .route(p -> p.path("/currency-conversion-feign/**").uri("lb://currency-conversion")) ]
    14. Intruducing ``` GlobalFilter using Spring Cloud API Gateway  ``` [Solution for Problem (currency-conversion/currency-exchange) : We can filter all requests here or we cna do authentication ]
-   15. Intruducing ``` Resilience4j/ (Previous Netflix Hystrix) {Circuit Breaker Pattern} ``` [Solution for Problem (currency-conversion/currency-exchange) : Circuit Breaker/fallback response]
-   
-   
+   15. Intruducing ``` Resilience4j/ (Previous Netflix Hystrix) {Circuit Breaker Pattern} ``` [Solution for Problem (currency-conversion/currency-exchange) : Circuit Breaker/fallback response  features 
+> A. @Retry(name = "sample-api", fallbackMethod = "hardcodedResponse") 
+> 
+> - resilience4j.retry.instances.sample-api.maxAttempts=5
+> - resilience4j.retry.instances.sample-api.waitDuration=1s
+> - resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
+> 
+>B. @CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+> 
+> - resilience4j.circuitbreaker.instances.default.failureRateThreshold=90
+>
+>C. @RateLimiter(name="default")
+> 
+> - resilience4j.ratelimiter.instances.default.limitForPeriod=2
+> - resilience4j.ratelimiter.instances.default.limitRefreshPeriod=10s
+>
+>D. @Bulkhead(name="default")
+> 
+> - resilience4j.bulkhead.instances.default.maxConcurrentCalls=10
+> - resilience4j.bulkhead.instances.sample-api.maxConcurrentCalls=10
+> ]   
    
