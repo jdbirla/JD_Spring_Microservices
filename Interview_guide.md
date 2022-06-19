@@ -3,6 +3,27 @@
 - [Restful] https://github.com/jdbirla/JD_Spring_Microservices/blob/master/restful-web-services/SM_Restful_Web_Services_Detail.md
 - [Microservice] https://github.com/jdbirla/JD_Spring_Microservices/blob/master/microservices/V2/README.md
 
+## High Level Rest APIs problems and evolution
+   1. Intruducing ``` Creating HelloWorld Rest API``` [Solution for Problem (Limit-service): Rest API ]
+   2. Intruducing ``` Return a Bean``` [Solution for Problem (Limit-service): Restrun a bean in response]
+   3. Intruducing ``` Path Variable``` [Solution for Problem (Limit-service): Path Variable for request paramter]
+   4. Intruducing ``` User Bean and User Service``` [Solution for Problem (Limit-service): Creating User bean and User service]
+   5. Intruducing ```  Post Method return correct HTTP Status code and Location``` [Solution for Problem (Limit-service): Post Method return correct HTTP Status code and Location using ResponseEntity]
+   6. Intruducing ```  Generic Exeption Handling``` [Solution for Problem (Limit-service): Genric excpetion handling using ResponseEntityExceptionHandler]
+   7. Intruducing ```  Delete Method``` [Solution for Problem (Limit-service): Create Delete method]
+   8. Intruducing ```  Validation ``` [Solution for Problem (Limit-service): validaiton using javax validaiton @Valid]
+   9. Intruducing ``` HATEOAS``` [Solution for Problem (Limit-service): Creating HATEOAS for get reques ]
+   10. Intruducing ``` i18 ``` [Solution for Problem (Limit-service): Implemention i18 using MessageSource ]
+   11. Intruducing ``` Content negotiation ``` [Solution for Problem (Limit-service): Chnage the formate using jackson for XML ]
+   12. Intruducing ``` Swagger ``` [Solution for Problem (Limit-service): Swagger documentaiton for APIs ]
+   13. Intruducing ``` Spring Boot Actuatot ``` [Solution for Problem (Limit-service): Monitoring using Spring Boot Actuator ]
+   14. Intruducing ``` HAL Explorer ``` [Solution for Problem (Limit-service): Visualizing APIs with HAL explorer]
+   15. Intruducing ``` Static / Dynamic Filtering ``` [Solution for Problem (Limit-service): Static filtering //@JsonIgnore and dynammic filtering MappingJacksonValue  ]
+   16. Intruducing ``` Versioning ``` [Solution for Problem (Limit-service): version using URI/param/header/produces ]
+   17. Intruducing ``` Security ``` [Solution for Problem (Limit-service): Spring Security ]
+   18. Intruducing ``` JPA ``` [Solution for Problem (Limit-service): Connecitng to JPA]
+   
+---
 
 ## High Level Microservices problems and evolution
    1. Create Rest Service
