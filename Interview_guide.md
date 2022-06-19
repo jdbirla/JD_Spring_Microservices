@@ -60,4 +60,12 @@
 > - resilience4j.bulkhead.instances.default.maxConcurrentCalls=10
 > - resilience4j.bulkhead.instances.sample-api.maxConcurrentCalls=10
 > ]   
+
+ 16. Intruducing ```Distributed Tracing Zipikin ``` [Solution for Problem (currency-conversion/currency-exchange) : Debug problem in complex chain, trace request across microservices]
+ 17. Intruducing ```Launching Zipkin container ``` [Solution for Problem (currency-conversion/currency-exchange) : Launching Zipkin contianer using Docker]
+     ``` docker run -p 9411:9411 openzipkin/zipkin:2.23 ```
+ 18. Intruducing ```Launching Zipkin container ``` [Solution for Problem (currency-conversion/currency-exchange) : Launching Zipkin contianer using Docker]
+ 19. 
    
+
+
