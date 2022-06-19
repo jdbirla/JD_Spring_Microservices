@@ -66,8 +66,9 @@
      ``` docker run -p 9411:9411 openzipkin/zipkin:2.23 ```
  18. Intruducing ```Connecting Microservice to Zipkin/sleuth/spring rabbit mq ``` [Solution for Problem (currency-conversion/currency-exchange) : Connecting to microservices using Zipkin/sleuth.spring rabit mq]
 > spring.sleuth.sampler.probability=1.0  all request tracing we can set percentage like 0.5%
- 20. Intruducing ```Creating Container Image for Microservices ``` [Solution for Problem (currency-conversion/currency-exchange) : Deploying and running all services in one shot using docker  ]
- 21. 
+ 20. Intruducing ```Creating Container Image for Microservices ``` [Solution for Problem (currency-conversion/currency-exchange) : Deploying and running all services  ]
+ 21. Intruducing ```Docker Compose Launching Container Image for all Microservices ``` [Solution for Problem (currency-conversion/currency-exchange) : Deploying and running all services one by one is not good idea that's will use docker compose ]
+ 22. 
    
 
 
