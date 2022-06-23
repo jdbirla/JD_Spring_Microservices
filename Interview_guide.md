@@ -172,5 +172,6 @@ networks:
  6. Intruducing ``` Config Maps ``` [Solution for Problem:A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume. ]
  7. Intruducing ``` Secret ``` [Solution for Problem:A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in a container image]
  8. Intruducing ``` Kubernetes with Microservice ``` [Solution for Problem:No need to spring cloud config server and Eureka becasue Kuberenetes provide cofig map for configuration and it provides service discovery for free]
- 9. 
+ 9. Intruducing ``` Liveness and Readiness ``` [Solution for Problem:If readiness probe is not successful no traffic is sent and if liveness probe is not succesful the pod is restarted]
+ 10. 
  
