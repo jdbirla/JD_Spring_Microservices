@@ -2,7 +2,56 @@
 
 - src: https://www.youtube.com/watch?v=b6R4dElDtRc&list=PLVz2XdJiJQxxWhFkucZBoMxeYE6qTgEF8&index=10
 - github: https://github.com/Java-Techie-jt/spring-cloud-gatway-hystrix
-- 
+
+API-GateWay
+-----------
+```bash
+URL : http://localhost:8989/order/bookOrder
+HTTP Method : POST
+```
+Json Request :
+```json
+{
+	"order":{
+		"id":103,
+		"name":"Mobile",
+		"qty":1,
+		"price":8000
+		
+	},
+	"payment":{}
+}
+```
+Json Response :
+```json
+{
+    "order": {
+        "id": 26,
+        "name": "ear-phone",
+        "qty": 5,
+        "price": 4000
+    },
+    "amount": 4000,
+    "transactionId": "9a021fa6-2061-4332-bdb7-b1358b3430c2",
+    "message": "payment processing successful and order placed"
+}
+
+```
+```bash
+URL : http://localhost:8989/payment/26
+HTTP Method : GET
+```
+Json Response :
+```json
+{
+    "paymentId": 1,
+    "transactionId": "d86cfeca-0b26-455e-a1a2-ac3e53707829",
+    "orderId": 103,
+    "paymentStatus": "SUCCESS",
+    "amount":4000
+}
+```
+
 - Step1: Basic service development and calling
 ![image](https://user-images.githubusercontent.com/69948118/176315360-7926c799-b9f0-4109-afa5-bed427a6d0b3.png)
 
@@ -54,7 +103,8 @@ https://github.com/Java-Techie-jt/springboot-resilience4j
 ![image](https://user-images.githubusercontent.com/69948118/176367735-8ac993cd-4f3c-4c79-977b-6c95a0faafee.png)
 ![image](https://user-images.githubusercontent.com/69948118/176367880-5620b5b8-66e1-444e-9809-597a01bfa91b.png)
 
-
+---
+- Src code cloud-gateway,hystrix-dashboard,order-service,payment-service,service-registry
 
 
 
