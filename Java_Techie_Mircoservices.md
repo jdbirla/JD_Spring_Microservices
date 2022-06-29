@@ -1,5 +1,8 @@
 # spring-microservices 
 
+- src: https://www.youtube.com/watch?v=b6R4dElDtRc&list=PLVz2XdJiJQxxWhFkucZBoMxeYE6qTgEF8&index=10
+- github: https://github.com/Java-Techie-jt/spring-cloud-gatway-hystrix
+- 
 - Step1: Basic service development and calling
 ![image](https://user-images.githubusercontent.com/69948118/176315360-7926c799-b9f0-4109-afa5-bed427a6d0b3.png)
 
@@ -33,5 +36,26 @@
  ![image](https://user-images.githubusercontent.com/69948118/176354133-c121ecf2-fe71-4558-8351-2e158aa6641a.png)
  ![image](https://user-images.githubusercontent.com/69948118/176354784-acdf6ba1-dbe1-424e-8d31-1bd5deaa41ae.png)
 
--Step9: Resilience4j
+- Step9: Resilience4j
+https://github.com/Java-Techie-jt/springboot-resilience4j
+
+![image](https://user-images.githubusercontent.com/69948118/176361474-b2716a48-19ba-4a78-ab63-63a45d6ba439.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176361388-49fcb11a-82aa-4918-b25a-358e2a831dc8.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176361786-5bcf113c-48a5-4435-baf9-3a268497fb1c.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176365347-2aa2b461-5bca-4fbf-9a96-3631e0e19e02.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176365476-b4b1a050-7e79-486c-8a0a-d58ec8d9f4a2.png)
+
+- Step10 Spring Cloud Gateway with API Key
+
+![image](https://user-images.githubusercontent.com/69948118/176367735-8ac993cd-4f3c-4c79-977b-6c95a0faafee.png)
+![image](https://user-images.githubusercontent.com/69948118/176367880-5620b5b8-66e1-444e-9809-597a01bfa91b.png)
+
+
+
+
+
 
