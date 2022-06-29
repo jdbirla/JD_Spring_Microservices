@@ -22,3 +22,16 @@
 
 ![image](https://user-images.githubusercontent.com/69948118/176345996-76fdd697-1401-4bc0-acdf-3368e2ba4081.png)
 
+
+- Step7: Spring cloud sleuth and zipkin
+
+![image](https://user-images.githubusercontent.com/69948118/176351375-40e3988b-53f7-4f98-9a72-8605cebd0937.png)
+![image](https://user-images.githubusercontent.com/69948118/176351519-a5e4a231-28cf-48dc-8286-4a42d22e3a25.png)
+
+- Step8: Trampoline
+- https://github.com/ErnestOrt/Trampoline/releases
+ ![image](https://user-images.githubusercontent.com/69948118/176354133-c121ecf2-fe71-4558-8351-2e158aa6641a.png)
+ ![image](https://user-images.githubusercontent.com/69948118/176354784-acdf6ba1-dbe1-424e-8d31-1bd5deaa41ae.png)
+
+-Step9: Resilience4j
+
