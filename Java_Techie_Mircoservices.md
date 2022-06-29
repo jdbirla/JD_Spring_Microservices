@@ -13,5 +13,12 @@
 - Step5: Spring Cloud Config
  ![image](https://user-images.githubusercontent.com/69948118/176323585-311c073c-948d-4822-8c30-89e8b7a5d8f1.png)
 
-- Step6: 
+- Step6: Microservices Logging ELK Stack | Elastic Search | Logstash | Kibana
+![image](https://user-images.githubusercontent.com/69948118/176345736-cbc1ee2d-8a87-41f0-8d64-cf1e38110e15.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176345833-b580dc9b-5d7f-45dc-94f6-0b0e3caaf29c.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176345871-29b280ff-97e6-4d5e-ab4c-f2f34ba29a7a.png)
+
+![image](https://user-images.githubusercontent.com/69948118/176345996-76fdd697-1401-4bc0-acdf-3368e2ba4081.png)
 
