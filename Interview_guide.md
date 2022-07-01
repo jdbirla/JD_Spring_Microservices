@@ -493,6 +493,55 @@ public class SurveyControllerIT {
  21. Intruducing ```Docker Compose Launching Container Image for all Microservices ``` [Solution for Problem (currency-conversion/currency-exchange) : Deploying and running all services one by one is not good idea that's will use docker compose ]
  22.  Running all the images using docker compose
    
+- Currency Converion controller
+```java
+package com.jd.microservices.currencyconversionservice;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+public class CurrencyConversionController {
+
+	@Autowired
+	private CurrencyExchangeProxy currencyExchangeProxy;
+
+	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
+	public CurrencyConversion calculateCurrencyConversion(@PathVariable String from, @PathVariable String to,
+			@PathVariable BigDecimal quantity) {
+
+		HashMap<String, String> uriVariables = new HashMap<String, String>();
+		uriVariables.put("from", from);
+		uriVariables.put("to", to);
+		ResponseEntity<CurrencyConversion> reponseEntity = new RestTemplate().getForEntity(
+				"http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversion.class, uriVariables);
+
+		CurrencyConversion currencyConversion = reponseEntity.getBody();
+		return new CurrencyConversion(currencyConversion.getId(), from, to, quantity,
+				currencyConversion.getConversionMultiple(),
+				quantity.multiply(currencyConversion.getConversionMultiple()), currencyConversion.getEnvironment()+ " " + "REST");
+	}
+
+	@GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
+	public CurrencyConversion calculateCurrencyConversionFeign(@PathVariable String from, @PathVariable String to,
+			@PathVariable BigDecimal quantity) {
+
+		CurrencyConversion currencyConversion = currencyExchangeProxy.retrieveExchangeValue(from, to);
+		return new CurrencyConversion(currencyConversion.getId(), from, to, quantity,
+				currencyConversion.getConversionMultiple(),
+				quantity.multiply(currencyConversion.getConversionMultiple()), currencyConversion.getEnvironment() + " " + "feign");
+	}
+
+}
+```
+   
 # Docker 
 
 ## Docker With Java Spring Boot Hello World Rest APIs
