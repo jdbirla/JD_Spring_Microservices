@@ -25,6 +25,200 @@
    
 ---
 
+Response Status
+200 - SUCCESS
+404 - RESOURCE NOT FOUND
+400 - BAD REQUEST
+201 - CREATED
+401 - UNAUTHORIZED
+500 - SERVER ERROR
+
+```java
+package com.jd.rest.webservices.restfulwebservices.user;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+import java.net.URI;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+@RestController
+public class UserResource {
+
+	@Autowired
+	private UserDaoService service;
+
+	@GetMapping("/users")
+	public List<User> retrieveAllUsers() {
+		return service.findAll();
+	}
+
+	@GetMapping("/users/{id}")
+	public EntityModel<User> retrieveUser(@PathVariable int id) {
+		User user = service.findOne(id);
+
+		if (user == null)
+			throw new UserNotFoundException("id-" + id);
+
+		EntityModel<User> model = EntityModel.of(user);
+
+		WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		model.add(linkToUsers.withRel("all-users"));
+
+		return model;
+	}
+
+	//
+	// input - details of user
+	// output - CREATED & Return the created URI
+	@PostMapping("/users")
+	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
+		User savedUser = service.save(user);
+		// created
+		// user/{id} saveUser.getId()
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+
+	}
+
+	@DeleteMapping("/users/{id}")
+	public void deleteUser(@PathVariable int id) {
+		User user = service.deleteById(id);
+
+		if (user == null)
+			throw new UserNotFoundException("id-" + id);
+	}
+
+}
+```
+
+- Ubsing JPA
+
+```java
+package com.jd.rest.webservices.restfulwebservices.user;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+@RestController
+public class UserJPAResource {
+
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	
+	@Autowired
+	private PostRepository postRepository;
+
+	@GetMapping("/jpa/users")
+	public List<User> retrieveAllUsers() {
+		return userRepository.findAll();
+	}
+
+	@GetMapping("/jpa/users/{id}")
+	public EntityModel<User> retrieveUser(@PathVariable int id) {
+		Optional<User> user = userRepository.findById(id);
+
+		if (!user.isPresent())
+			throw new UserNotFoundException("id-" + id);
+
+		EntityModel<User> model = EntityModel.of(user.get());
+
+		WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		model.add(linkToUsers.withRel("all-users"));
+
+		return model;
+	}
+
+	//
+	// input - details of user
+	// output - CREATED & Return the created URI
+	@PostMapping("/jpa/users")
+	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
+		User savedUser = userRepository.save(user);
+		// created
+		// user/{id} saveUser.getId()
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+
+	}
+
+	@DeleteMapping("/jpa/users/{id}")
+	public void deleteUser(@PathVariable int id) {
+	 userRepository.deleteById(id);
+	}
+	
+	@GetMapping("/jpa/users/{id}/posts")
+	public List<Post> retrieveAllPostsByUser(@PathVariable int id) {
+		Optional<User> user = userRepository.findById(id);
+
+		if (!user.isPresent())
+			throw new UserNotFoundException("id-" + id);
+		
+		return user.get().getPosts();
+		
+	}
+	
+	@PostMapping("/jpa/users/{id}/posts")
+	public ResponseEntity<Object> createPost(@PathVariable int id, @RequestBody Post post) {
+		Optional<User> userOptional = userRepository.findById(id);
+
+		if (!userOptional.isPresent())
+			throw new UserNotFoundException("id-" + id);
+		
+	    User user = userOptional.get();
+	    
+	    post.setUser(user);
+	    
+	    postRepository.save(post);
+	    
+	    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+	    
+
+	}
+
+}
+```
+
+
+
 ## High Level Microservices problems and evolution
    1. Create Rest Service
    2. Intruducing ``` Configuration using @ConfigurationProperties``` [Solution for Problem (Limit-service): For external configuration ]
@@ -70,6 +264,8 @@
  21. Intruducing ```Docker Compose Launching Container Image for all Microservices ``` [Solution for Problem (currency-conversion/currency-exchange) : Deploying and running all services one by one is not good idea that's will use docker compose ]
  22.  Running all the images using docker compose
    
+   
+### Docker Conpose
 ```
 version: "3.7"  # optional since v1.27.0
 services:
@@ -163,6 +359,20 @@ services:
 networks:
   currency-jd-network:
   ```
+  
+### Docker commands
+
+```
+docker network create currency-network
+docker run -p 8000:8000 --network=currency-network --name=currency-exchange-service in28min/currency-exchange-service:0.0.1-SNAPSHOT
+docker run -p 8100:8100 --network=currency-network --name=currency-conversion-service --env CURRENCY_EXCHANGE_URI=http://currency-exchange-service:8000 -d in28min/currency-conversion-service:0.0.1-SNAPSHOT
+
+mvn docker:build
+docker run -p 8080:8080 webservices/01-hello-world-rest-api
+
+docker-compose up
+```
+
 ## High Level Microservices problems and evolution with Kubernetes
  1. Intruducing ``` Docker ``` [Solution for Problem:Standaridized application packagingm languge netural cloud netrual , 1000 microservice ]
  2. Intruducing ``` Kubernetes ``` [Solution for Problem: Container Orchestration manages 1000 instacne of 1000 microservice, Auto scaling, service Discovery , Load balancing , self healing, zero downtime deployments, cloud netural]
@@ -175,3 +385,80 @@ networks:
  9. Intruducing ``` Liveness and Readiness ``` [Solution for Problem:If readiness probe is not successful no traffic is sent and if liveness probe is not succesful the pod is restarted]
  10. 
  
+### Kubernetes
+### Deployement.yaml
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: currency-conversion
+  name: currency-conversion
+  namespace: default
+spec:
+  replicas: 2
+  minReadySeconds: 45
+  selector:
+    matchLabels:
+      app: currency-conversion
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: currency-conversion
+    spec:
+      containers:
+      - image: jbirla/k8s-currency-conversion:0.0.5-RELEASE #CHANGE
+        imagePullPolicy: IfNotPresent
+        name: currency-conversion
+#        env: //CHANGE
+#          - name: CURRENCY_EXCHANGE_URI
+#            value: http://currency-exchange
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels: #PODS
+    app: currency-conversion
+  name: currency-conversion
+  namespace: default
+spec:
+  ports:
+  - # nodePort: 30701 
+    port: 8100 
+    protocol: TCP
+    targetPort: 8100 
+  selector:
+    app: currency-conversion
+  sessionAffinity: None 
+  type: NodePort
+  ```
+### Kubernetes Commands
+```
+kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+kubectl scale deployment hello-world-rest-api --replicas=3
+kubectl delete pod hello-world-rest-api-58ff5dd898-62l9d
+kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
+
+kubectl get events
+kubectl get pods
+kubectl get replicaset
+kubectl get deployment
+kubectl get service
+
+kubectl apply -f deployment.yaml
+
+kubectl delete all -l app=hello-world-rest-api
+
+kubectl apply -f mysql-database-data-volume-persistentvolumeclaim.yaml,mysql-deployment.yaml,mysql-service.yaml
+
+eksctl create cluster --name in28minutes-cluster --nodegroup-name in28minutes-cluster-node-group  --node-type t2.medium --nodes 3 --nodes-min 3 --nodes-max 7 --managed --asg-access
+
+```
