@@ -879,13 +879,13 @@ eksctl create cluster --name in28minutes-cluster --nodegroup-name in28minutes-cl
 	- @Scope:Everty time when contianer rquest for object bean will give new object
 
 - REST API related Annotations:​
-        - @RestController​
-	- @RequestMapping​
-	- @GetMapping​
-	- @PostMapping​
-	- @PutMapping​
-	- @DeleteMapping​
-	- @RequestBody ​
-	- @PathVariable​
-	- @RequestParam​
-	- @ControllerAdvice & @ExceptionHandler
+        - @RestController: @Controller / @ResponseBody
+	- @RequestMapping:
+	- @GetMappin :  inherited by RequestMapping
+	- @PostMapping  :  inherited by RequestMapping
+	- @PutMapping  :  inherited by RequestMapping
+	- @DeleteMapping  :  inherited by RequestMapping
+	- @RequestBody : Bind request body to bean 
+	- @PathVariable: Pass the request parameter in path like /304 as id , in pathvariable its mandatory if we are not giving it will throw 404
+	- @RequestParam: Pass the request parameter in ULR like id?304 as id, in rwquestparam its optional if we are not ginving it won't throq 404
+	- @ControllerAdvice & @ExceptionHandler : Throwing cutomize exception via controller
