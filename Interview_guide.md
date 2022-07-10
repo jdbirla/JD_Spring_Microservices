@@ -855,24 +855,37 @@ eksctl create cluster --name in28minutes-cluster --nodegroup-name in28minutes-cl
   - @Repository : :  Derived from component
 -Spring Core related Annotations:
 	- @Configuration : This annotation using for spring configuration using this we can configure bean deifination
-	- @Bean : When we used @configuration inside that we can use @ bean for creating object of any class and this is another way of cretion bean lifecycle like @component or xml configuration after that spring container will register this bean inside that and we can inject this anywere using @autowired
-	ex. 
-	```java
-	@Configuration
-public class BeanConfig {
+	- @Bean : When we used @configuration inside that we can use @ bean for creating object of any class and this is another way of cretion bean lifecycle like                  @component or xml configuration after that spring container will register this bean inside that and we can inject this anywere using @autowired
+			ex. 
+			```java
+			@Configuration
+			public class BeanConfig {
 
-    @Bean
-    public TestBean testBean(){
-        return new TestBean();
-    }
+			@Bean
+			public TestBean testBean(){
+			return new TestBean();
+			}
 
-}
-	```
+			}
+			```
 	- @Autowired:Inject the bean
-	- @Qualifier:
-	- @Lazy:
-	- @Value
-	- @PropertySource​
-	- @ConfigurationProperties
-	- @Profile​
-	- @Scope:
+	- @Qualifier: This is use when more than implentaiton is there and we are injecting the interface for selecting one of them we have to use qualifies
+	- @Primary: Same as qualifier but in this case it will take primary class object only
+	- @Lazy:By default the spring always create object of beans as eager when it start but if don't want to create object on startup then we can use @lazy and spring will create object when we use that object 
+	- @Value : When we want to use values from property files then will go for value
+	- @PropertySource: This is use for custom property files loading apart from application.property
+	- @ConfigurationProperties: This one is use for load lot property values and bind with a bean/DTO
+	- @Profile:Using this we can swtich over the different environment
+	- @Scope:Everty time when contianer rquest for object bean will give new object
+
+- REST API related Annotations:​
+        - @RestController​
+	- @RequestMapping​
+	- @GetMapping​
+	- @PostMapping​
+	- @PutMapping​
+	- @DeleteMapping​
+	- @RequestBody ​
+	- @PathVariable​
+	- @RequestParam​
+	- @ControllerAdvice & @ExceptionHandler
