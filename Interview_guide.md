@@ -841,3 +841,38 @@ kubectl apply -f mysql-database-data-volume-persistentvolumeclaim.yaml,mysql-dep
 eksctl create cluster --name in28minutes-cluster --nodegroup-name in28minutes-cluster-node-group  --node-type t2.medium --nodes 3 --nodes-min 3 --nodes-max 7 --managed --asg-access
 
 ```
+---
+###  Spring Boot Annotations (Interview Questions)
+- @SpringBootApplication : Main spring boot application
+   - @ComponentScan
+   - @EanbleAutoConfiguration
+   - @Configuration
+- Stereotype annotation
+  -  @Component : For maninging bean life cycle
+  - @Service :  Derived from component
+  - @RestController : @Controller / @ResponseBody
+  - @Controller : Derived from component
+  - @Repository : :  Derived from component
+-Spring Core related Annotations:
+	- @Configuration : This annotation using for spring configuration using this we can configure bean deifination
+	- @Bean : When we used @configuration inside that we can use @ bean for creating object of any class and this is another way of cretion bean lifecycle like @component or xml configuration after that spring container will register this bean inside that and we can inject this anywere using @autowired
+	ex. 
+	```java
+	@Configuration
+public class BeanConfig {
+
+    @Bean
+    public TestBean testBean(){
+        return new TestBean();
+    }
+
+}
+	```
+	- @Autowired:Inject the bean
+	- @Qualifier:
+	- @Lazy:
+	- @Value
+	- @PropertySource​
+	- @ConfigurationProperties
+	- @Profile​
+	- @Scope:
