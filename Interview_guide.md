@@ -889,3 +889,16 @@ eksctl create cluster --name in28minutes-cluster --nodegroup-name in28minutes-cl
 	- @PathVariable: Pass the request parameter in path like /304 as id , in pathvariable its mandatory if we are not giving it will throw 404
 	- @RequestParam: Pass the request parameter in ULR like id?304 as id, in rwquestparam its optional if we are not ginving it won't throq 404
 	- @ControllerAdvice & @ExceptionHandler : Throwing cutomize exception via controller
+- Spring Data JPA related annotations:​
+     - @Entity: 
+     - @Table:
+     - @Column:
+     - @Transactional:
+
+- Entity class relationships ​
+     - @OnetoOne ​
+     - @OnetoMany ​
+     - @ManytoOne​
+     - @ManytoMany
+
+- 
